@@ -13,7 +13,7 @@
     </v-toolbar>
     <v-divider></v-divider>
     <v-list dense class="pt-0">
-          <v-list-tile :to="{ name: 'Index' }">
+          <v-list-tile exact :to="{ name: 'Index' }">
             <v-list-tile-action >
               <v-icon>store</v-icon>
             </v-list-tile-action>
@@ -21,7 +21,7 @@
               <v-list-tile-title>Inicio</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
-          <v-list-tile :to="{ name: 'Estoque' }">
+          <v-list-tile exact :to="{ name: 'Estoque' }">
             <v-list-tile-action >
               <v-icon>local_grocery_store</v-icon>
             </v-list-tile-action>
