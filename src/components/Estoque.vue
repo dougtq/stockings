@@ -34,39 +34,13 @@
   <br>
   <br>
   <br>
-  <v-container fluid grid-list-md>
-    <v-data-iterator
-      content-tag="v-layout"
-      row
-      wrap
-      hide-actions
-      :items="items"
-      :rows-per-page-items="rowsPerPageItems"
-      :pagination.sync="pagination"
-    >
-      <v-flex
-        slot="item"
-        slot-scope="props"
-        xs12
-      >
-        <v-text-field
-          label="Nome do Produto"
-          disabled
-          required>
-        </v-text-field>
-        <v-text-field
-          label="Preço unitário"
-          disabled
-          required>
-        </v-text-field>
-        <v-text-field
-          label="Unidades em estoque"
-          disabled
-          required>
-        </v-text-field>
-      </v-flex>
-    </v-data-iterator>
-  </v-container>
+  <v-list v-for="(item, index) of items" :key="index">
+    <v-list-tile to="sdadas">
+    <v-list-tile-title class="title">
+       <b>Produto: {{ item.name }} ----- Preço Unitário: {{ item.calories }} ----- Quantidade: {{ item.carbs }}</b>
+    </v-list-tile-title>
+    </v-list-tile>
+  </v-list>
   </v-content>
 </template>
 
