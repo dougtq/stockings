@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <header id="menu">
+      <div class="hidden-sm-and-up">
       <v-navigation-drawer v-model="sidebar" app>
         <v-toolbar flat>
       <v-list>
@@ -12,34 +13,25 @@
       </v-list>
     </v-toolbar>
     <v-divider></v-divider>
-    <v-list dense class="pt-0">
-          <v-list-tile exact :to="{ name: 'Index' }">
-            <v-list-tile-action >
-              <v-icon>store</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content >
-              <v-list-tile-title>Inicio</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-          <v-list-tile exact :to="{ name: 'Estoque' }">
-            <v-list-tile-action >
-              <v-icon>local_grocery_store</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content >
-              <v-list-tile-title>Estoque</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
+    <v-list dense class="pt-0" v-for="(page, index) of pages" :key="index">
+        <v-list-tile exact :to="page.route">
+          <v-list-tile-action >
+            <v-icon>{{ page.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ page.name }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
       </v-navigation-drawer>
+      </div>
       <v-toolbar clipped-right color="blue-grey lighten-5 black--text">
         <v-toolbar-title>
           <v-btn :to="{ name: 'Index' }" id="brand-name" color="light-blue lighten-1"><v-icon color="black"></v-icon><b> {{ title }} </b></v-btn>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down" justify-space-around>
-          <!-- class="hidden-sm-and-down" justify-space-around -->
-          <v-btn exact flat raised :to="{ name: 'Index' }"><v-icon medium color="teal darken-1">store</v-icon></v-btn>
-          <v-btn exact flat raised :to="{ name: 'Estoque' }"><v-icon medium color="blue">local_grocery_store</v-icon></v-btn>
+          <v-btn exact flat raised v-for="(page, i) of pages" :key="i" :to="page.route"><v-icon medium :color="page.color">{{ page.icon }}</v-icon></v-btn>
         </v-toolbar-items>
         <span class="hidden-sm-and-up">
           <v-toolbar-side-icon @click="sidebar = !sidebar"></v-toolbar-side-icon>
@@ -60,7 +52,21 @@ export default {
   data () {
     return {
       title: 'Use & Abuse',
-      sidebar: false
+      sidebar: false,
+      pages: [
+        {
+          name: 'Inicial',
+          route: { name: 'Index' },
+          color: 'blue',
+          icon: 'store',
+        },
+        {
+          name: 'Estoque',
+          route: { name: 'Estoque' },
+          color: 'teal darken-1',
+          icon: 'local_grocery_store',
+        }
+      ]
     }
   }
 }
