@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <div>
   <v-form v-model="valid" ref="form">
     <v-text-field
       label="Nome do Produto"
@@ -26,16 +26,14 @@
     <v-btn @click="clear" color="orange accent-3"><b>limpar</b></v-btn>
   </v-form>
   <br>
-  <br>
-  <br>
-  <v-list v-for="(item, index) of items" :key="index">
+  <v-list v-if="items && items.length" v-for="(item, index) of items" :key="index">
     <v-list-tile to="sdadas">
     <v-list-tile-title class="title">
        <b>Produto: {{ item.name }} ----- Preço Unitário: {{ item.calories }} ----- Quantidade: {{ item.carbs }}</b>
     </v-list-tile-title>
     </v-list-tile>
   </v-list>
-  </v-content>
+  </div>
 </template>
 
 <script>
