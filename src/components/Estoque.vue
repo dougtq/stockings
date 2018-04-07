@@ -1,6 +1,6 @@
 <template>
   <v-content>
-  <v-form v-model="valid" ref="form" lazy-validation>
+  <v-form v-model="valid" ref="form">
     <v-text-field
       label="Nome do Produto"
       v-model="name"
@@ -17,12 +17,6 @@
       v-model="quantity"
       :rules="quantityRules"
       required></v-text-field>
-    <!-- <v-select
-      label="Item"
-      v-model="select"
-      :items="items"
-      :rules="[v => !!v || 'Item is required']"
-      required></v-select> -->
     <v-btn
       @click="submit"
       color="success"
