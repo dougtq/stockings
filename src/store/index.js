@@ -7,12 +7,12 @@ import shortid from 'shortid'
 Vue.use(Vuex)
 // Initialize Firebase
 const config = {
-  apiKey: process.env.apiKey || process.env.APIKEY,
-  authDomain: process.env.authDomain,
-  databaseURL: process.env.databaseURL || process.env.DATABASEURL,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
-  messagingSenderId: process.env.messagingSenderId
+  apiKey: 'AIzaSyCnQPpuJ9dY-f40SCulXsTZS-Ld2VkAA-c',
+  authDomain: 'use-abuse.firebaseapp.com',
+  databaseURL: 'https://use-abuse.firebaseio.com',
+  projectId: 'use-abuse',
+  storageBucket: 'use-abuse.appspot.com',
+  messagingSenderId: '332404837457'
 }
 
 const fireDB = firebase.database(firebase.initializeApp(config))
