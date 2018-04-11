@@ -78,7 +78,6 @@ export default {
         price: this.price,
         quantity: this.quantity
       }
-      console.log(payload)
       this.$store.dispatch('updateProduct', payload)
     }
   },
