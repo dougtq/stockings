@@ -76,9 +76,12 @@ export default {
       return this.$store.getters.isAuthenticated
     },
     pages () {
+      const fixedRoutes = [{ name: 'Home', route: { name: 'Index' }, icon: 'home', color: '' }]
+
+
       if (this.isAuthenticated) {
         return [
-          { name: 'Home', route: { name: 'Index' }, icon: 'home', color: '' },
+          ...fixedRoutes,
           {
             name: 'Estoque',
             route: { name: 'Estoque' },
@@ -89,7 +92,7 @@ export default {
         ]
       } else {
         return [
-          { name: 'Home', route: { name: 'Index' }, icon: 'home', color: '' },
+          ...fixedRoutes,
           { name: 'Entrar', route: { name: 'Login' }, icon: 'lock_open', color: '' }
         ]
       }
@@ -106,7 +109,7 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    padding: 10px;
+    /* padding: 10px; */
   }
 
   #content {
