@@ -46,6 +46,7 @@ export default {
   data () {
     return {
       valid: false,
+      alert: false,
       productId: this.$store.state.product.id || this.$route.params.id,
       name: this.$store.state.product.name,
       nameRules: [(r) => !!r || 'Nome é obrigatório',
@@ -58,6 +59,9 @@ export default {
   },
   props: {},
   computed: {
+    error () {
+      return this.$store.state.error
+    },
     isLoading () {
       return this.$store.state.loading
     }

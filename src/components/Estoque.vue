@@ -47,18 +47,22 @@
 export default {
   name: 'Estoque',
   data () {
-    return {}
+    return {
+      alert: false,
+    }
   },
   methods: {
     selecionaProduto (e) {
       this.$store.dispatch('getProduct', { id: e.target.id })
-      // console.log(e.target.id)
     }
   },
   async beforeMount () {
     await this.$store.dispatch('getProducts')
   },
   computed: {
+    error () {
+      return this.$store.state.error
+    },
     products () {
       return this.$store.state.products
     },
