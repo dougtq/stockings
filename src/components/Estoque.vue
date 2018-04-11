@@ -2,18 +2,18 @@
 <v-container fluid>
   <v-layout row wrap>
     <v-flex xs12>
-      <v-layout>  
+      <v-layout class="header-produto">  
         <v-flex xs12 sm12 md4>
           <h3><strong>Nome</strong></h3>
         </v-flex>
         <v-flex xs12 sm12 md4>
-          <b><strong>Preço</strong></b>  
+          <h3><strong>Preço</strong></h3>  
         </v-flex>
         <v-flex xs12 sm12 md4>
-          <b>Quantidade</b>
+          <h3><strong>Quantidade</strong></h3>
         </v-flex>
         <v-flex xs12 sm12 md4>
-          <b>Ação</b>
+          <h3><strong>Ação</strong></h3>
         </v-flex>
       </v-layout>
       <v-flex>
@@ -33,7 +33,7 @@
           <v-flex xs12 sm12 md4>
             <b>{{ item.quantity }}</b>
           </v-flex>
-          <v-flex xs12 sm12 md4>
+          <v-flex xs12 sm12 md4 align="center">
             <a color="primary" :id="item.id" @click="selecionaProduto">Atualizar</a>
           </v-flex>
         </v-layout>
@@ -91,12 +91,20 @@ export default {
   border: 1px solid black;
   padding: 2px;
   margin: 5px;
+  text-align: center;
 }
 
 a {
+  align-self: auto;
+  height: 100%;
+  border: black solid 1px;
   text-align: center;
   text-decoration: none;
-  text-decoration: underline;
+  /* text-decoration: underline; */
   color: black;
+}
+
+.header-produto {
+  color: red;
 }
 </style>
