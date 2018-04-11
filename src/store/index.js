@@ -103,7 +103,7 @@ export const store = new Vuex.Store({
     getProducts ({commit}, payload) {
       commit('setLoading', true)
       fireDB.ref('produtos')
-        .on('value', (data) => {
+        .on('value', (data, dataStr) => {
           const listaProdutos = []
           data
             .forEach((dt) => {
@@ -112,23 +112,29 @@ export const store = new Vuex.Store({
           commit('setProducts', listaProdutos)
           commit('setError', null)
           commit('setLoading', false)
+        }, (err) => {
+          commit('setError', err)
+          commit('setLoading', false)          
         })
     },
     getProduct ({commit}, payload) {
       commit('setLoading', true)
-      console.log(payload)
       fireDB.ref(`produtos/${payload.id}`)
         .on('value', (data) => {
-          // const listaProdutos = []
-          // console.log(data.toJSON())
           commit('setProduct', data.toJSON())
           commit('setError', null)
           commit('setLoading', false)
+        }, (err) => {
+          if (err) {
+            commit('setError', err)
+            commit('setProduct', null)
+            commit('setLoading', false)
+            router.push('/estoque')
+          }
         })
       router.push(`/produto/${payload.id}`)
     },
     updateProduct ({commit}, payload) {
-      console.log(payload)
       commit('setLoading', true)
       fireDB.ref(`produtos/${payload.id}`)
         .update(payload)
