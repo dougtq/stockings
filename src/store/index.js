@@ -63,14 +63,12 @@ export const store = new Vuex.Store({
       commit('setLoading', true)
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(user => {
-          commit('setUser', {email: user.email})
-          commit('setLoading', false)
+          commit('setUser', { email: user.email })
           commit('setError', null)
           router.push('/estoque')
         })
         .catch(error => {
           commit('setError', error.message)
-          commit('setLoading', false)
         })
         .finally(() => {
           commit('setLoading', false)
@@ -87,7 +85,6 @@ export const store = new Vuex.Store({
     createProduct ({commit}, payload) {
       commit('setLoading', true)
       payload.id = shortid.generate()
-
       fireDB.ref('produtos/' + payload.id)
         .set(payload)
         .then(() => {
