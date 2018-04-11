@@ -1,9 +1,9 @@
 <template>
-  <article>
+  <v-container fluid>
     <v-carousel interval="6000" hide-delimiters light>
       <v-carousel-item  v-for="(item, i) in pics" :src="item.src" :key="i"></v-carousel-item>
     </v-carousel>
-  </article>
+  </v-container>
 </template>
 
 <script>
@@ -17,7 +17,13 @@ export default {
         },
         {
           src: 'http://futurelankan.com/wp-content/uploads/2017/06/bridge-and-burn-clothing-store-1.jpg'
-        }
+        },
+        {
+          src: 'http://assets.papelpop.com/wp-content/uploads/2014/09/britney-linha-lingerie.jpg'
+        },
+        {
+          src: 'http://cdn.ofuxico.com.br/img/galeria/2014/09/230434.jpg'
+        },
       ]
     }
   }

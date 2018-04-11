@@ -1,92 +1,98 @@
 <template>
-  <div>
-  <v-form v-model="valid" ref="form">
-    <v-text-field
-      label="Nome do Produto"
-      v-model="name"
-      :rules="nameRules"
-      :counter="50"
-      required></v-text-field>
-    <v-text-field
-      label="Preço unitário"
-      v-model="price"
-      :rules="priceRules"
-      required></v-text-field>
-    <v-text-field
-      label="Unidades em estoque"
-      v-model="quantity"
-      :rules="quantityRules"
-      required></v-text-field>
-    <v-btn
-      @click="submit"
-      color="success"
-      :disabled="!valid">
-      <b>adicionar</b>
-    </v-btn>
-    <v-btn @click="clear" color="orange accent-3"><b>limpar</b></v-btn>
-  </v-form>
-  <br>
-  <v-list v-if="items && items.length" v-for="(item, index) of items" :key="index">
-    <v-list-tile to="sdadas">
-    <v-list-tile-title class="title">
-       <b>Produto: {{ item.name }} ----- Preço Unitário: {{ item.calories }} ----- Quantidade: {{ item.carbs }}</b>
-    </v-list-tile-title>
-    </v-list-tile>
-  </v-list>
-  </div>
+<v-container fluid>
+  <v-layout row wrap>
+    <v-flex xs12>
+      <v-layout>  
+        <v-flex xs12 sm12 md4>
+          <h3><strong>Nome</strong></h3>
+        </v-flex>
+        <v-flex xs12 sm12 md4>
+          <b><strong>Preço</strong></b>  
+        </v-flex>
+        <v-flex xs12 sm12 md4>
+          <b>Quantidade</b>
+        </v-flex>
+        <v-flex xs12 sm12 md4>
+          <b>Ação</b>
+        </v-flex>
+      </v-layout>
+      <v-flex>
+        <v-alert type="error" dismissible v-model="alert">
+          {{ error }}
+        </v-alert>
+      </v-flex>
+      <h1 v-if="isLoading">Carregando...</h1>
+      <div class="product-row" v-if="products && products.length" v-for="(item, index) of products" :key="index" :id="item.id">
+        <v-layout :id="item.id">
+          <v-flex xs12 sm12 md4>
+            <h3>{{ item.name }}</h3>
+          </v-flex>
+          <v-flex xs12 sm12 md4>
+            <b>{{ item.price }}</b>
+          </v-flex>
+          <v-flex xs12 sm12 md4>
+            <b>{{ item.quantity }}</b>
+          </v-flex>
+          <v-flex xs12 sm12 md4>
+            <a color="primary" :id="item.id" @click="selecionaProduto">Atualizar</a>
+          </v-flex>
+        </v-layout>
+      </div>
+    </v-flex>
+  </v-layout>
+</v-container>
 </template>
 
 <script>
 export default {
   name: 'Estoque',
   data () {
-    return {
-      valid: false,
-      name: '',
-      nameRules: [
-        v => !!v || 'O nome do produto é obrigatório',
-        v => (v && v.length <= 50) || 'O nome do produto deve possuir menos de 50 caracteres'
-      ],
-      price: '',
-      priceRules: [
-        v => !!v || 'O preço unitário do produto é obrigatório',
-        v => v > 0  || 'A preço unitário do produto em estoque não pode ser negativa ou possuir outros caracteres',
-      ],
-      quantity: '',
-      quantityRules: [
-        v => !!v || 'A quantidade do produto em estoque é obrigatória',
-        v => v > -1  || 'A quantidade do produto em estoque não pode ser negativa ou possuir outros caracteres'
-      ],
-      rowsPerPageItems: [4, 8, 12],
-      pagination: {
-        rowsPerPage: 4
-      },
-      items: [
-        {
-          value: false,
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          sodium: 87,
-          calcium: '14%',
-          iron: '1%'
-        }
-      ]
-    }
+    return {}
   },
   methods: {
-    clear () {
-      this.$refs.form.reset()
-      this.valid = false
-    },
-    submit () {}
+    selecionaProduto (e) {
+      this.$store.dispatch('getProduct', { id: e.target.id })
+      // console.log(e.target.id)
+    }
   },
-  created () {}
+  async beforeMount () {
+    await this.$store.dispatch('getProducts')
+  },
+  computed: {
+    products () {
+      return this.$store.state.products
+    },
+    isLoading () {
+      return this.$store.state.loading
+    }
+  },
+  watch: {
+    error (value) {
+      if (value) {
+        this.alert = true
+      }
+    },
+    alert (value) {
+      if (!value) {
+        this.$store.commit('setError', null)
+      }
+    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.product-row {
+  border: 1px solid black;
+  padding: 2px;
+  margin: 5px;
+}
+
+a {
+  text-align: center;
+  text-decoration: none;
+  text-decoration: underline;
+  color: black;
+}
 </style>
