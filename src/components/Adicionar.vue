@@ -39,7 +39,7 @@ export default {
       name: '',
       nameRules: [
         v => !!v || 'O nome do produto é obrigatório',
-        v => (v && v.length <= 50) || 'O nome do produto deve possuir menos de 50 caracteres'
+        v => v && v.length <= 50 || 'O nome do produto deve possuir menos de 50 caracteres'
       ],
       price: '',
       priceRules: [
