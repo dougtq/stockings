@@ -21,7 +21,7 @@
           {{ error }}
         </v-alert>
       </v-flex>
-      <h1 v-if="isLoading">Carregando...</h1>
+      <v-progress-circular v-if="isLoading" indeterminate color="primary"></v-progress-circular>
       <div class="product-row" v-if="products && products.length" v-for="(item, index) of products" :key="index" :id="item.id">
         <v-layout :id="item.id">
           <v-flex xs12 sm12 md4>

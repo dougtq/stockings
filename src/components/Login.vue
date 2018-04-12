@@ -18,8 +18,8 @@
                 label="E-mail"
                 id="email"
                 type="email"
-                :rules="[(r) => !!r || `E-mail é obrigatório`]"
                 v-model="email"
+                :rules="emailRules"
                 required></v-text-field>
             </v-flex>
             <v-flex>
@@ -29,14 +29,14 @@
                 id="password"
                 type="password"
                 v-model="password"
-                :rules="[(r) => !!r || `Senha é obrigatória`]"
+                :rules="passwordRules"
                 required></v-text-field>
             </v-flex>
             <v-flex class="text-xs-center" mt-5>
               <v-btn color="primary" type="submit" :disabled="!formValid || loading">Entrar</v-btn>
             </v-flex>
             <v-flex xs12 class="text-xs-center" v-if="loading" mt-5>
-              <h1>Carregando...</h1>
+              <v-progress-circular indeterminate color="primary"></v-progress-circular>
             </v-flex>
           </v-layout>
         </v-form>
@@ -52,7 +52,9 @@ export default {
       alert: false,
       formValid: false,
       email: '',
-      password: ''
+      emailRules: [(r) => !!r || `E-mail é obrigatório`],
+      password: '',
+      passwordRules: [(r) => !!r || `Senha é obrigatória`]
     }
   },
   methods: {
