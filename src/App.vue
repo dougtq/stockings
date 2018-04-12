@@ -34,9 +34,14 @@
         </v-navigation-drawer>
       </div>
       <v-toolbar clipped-right color="blue-grey lighten-5 black--text">
-        <v-toolbar-title>
-          <v-btn :to="{ name: 'Index' }" id="brand-name" color="light-blue lighten-1"><v-icon color="black"></v-icon><b> {{ title }} </b></v-btn>
-        </v-toolbar-title>
+        <span class="hidden-md-and-up">
+          <v-toolbar-side-icon @click="sidebar = !sidebar"></v-toolbar-side-icon>
+        </span>
+        <!-- <v-toolbar-title id="brand-name">
+        </v-toolbar-title> -->
+        <span class="hidden-sm-and-down">
+          <v-btn :to="{ name: 'Index' }" color="light-blue lighten-1"><v-icon color="black"></v-icon><b> {{ title }} </b></v-btn>
+        </span>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down" justify-space-around>
           <v-btn exact flat raised v-for="(page, i) of pages" :key="i" :to="page.route"><v-icon medium :color="page.color">{{ page.icon }}</v-icon></v-btn>
@@ -45,7 +50,7 @@
           </v-btn>
         </v-toolbar-items>
         <span class="hidden-md-and-up">
-          <v-toolbar-side-icon @click="sidebar = !sidebar"></v-toolbar-side-icon>
+          <v-btn :to="{ name: 'Index' }" color="light-blue lighten-1"><v-icon color="black"></v-icon><b> {{ title }} </b></v-btn>
         </span>
       </v-toolbar>
     </header>
@@ -109,18 +114,21 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    /* padding: 10px; */
   }
 
   #content {
     font-family: 'Raleway', sans-serif;
   }
 
-  #menu, #footer {
+  #menu {
     font-family: 'Merriweather', serif;
   }
 
-  .hidden-sm-and-down a {
-    margin-right: 5px;
+  @media screen and (max-width: 480px) {
+    .brand-name {
+      float: right;
+      position: relative;
+      display: none;
+    }
   }
 </style>

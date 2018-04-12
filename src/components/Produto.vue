@@ -33,7 +33,7 @@
             :disabled="!valid || isLoading">
             <b>atualizar</b>
           </v-btn>
-          <v-btn @click="clear" color="orange accent-3"><b>limpar</b></v-btn>
+          <v-btn href="javascript:window.history.go(-1)" color="warning"><b>Cancelar</b></v-btn>
       </v-form>
     </v-flex>
   </v-layout>

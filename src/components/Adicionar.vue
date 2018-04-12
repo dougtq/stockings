@@ -20,12 +20,8 @@
         :rules="quantityRules"
         required></v-text-field>
     </v-layout>
-      <v-btn
-        type="submit"
-        color="primary"
-        :disabled="!valid">
-        <b>adicionar</b>
-      </v-btn>
+      <v-btn type="submit" color="primary" :disabled="!valid"><b>adicionar</b></v-btn>
+      <v-btn href="javascript:window.history.go(-1)" color="warning"><b>Cancelar</b></v-btn>
       <v-btn @click="clear" color="orange accent-3"><b>limpar</b></v-btn>
   </v-form>
 </v-flex>
