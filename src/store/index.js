@@ -1,21 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import firebase from 'firebase'
+import firebase from '@/service/firebase'
 import router from '@/router'
 import shortid from 'shortid'
 
 Vue.use(Vuex)
-// Initialize Firebase
-const config = {
-  apiKey: 'AIzaSyCnQPpuJ9dY-f40SCulXsTZS-Ld2VkAA-c',
-  authDomain: 'use-abuse.firebaseapp.com',
-  databaseURL: 'https://use-abuse.firebaseio.com',
-  projectId: 'use-abuse',
-  storageBucket: 'use-abuse.appspot.com',
-  messagingSenderId: '332404837457'
-}
 
-const fireDB = firebase.database(firebase.initializeApp(config))
+const fireDB = firebase.database()
 
 export const store = new Vuex.Store({
   state: {
@@ -78,9 +69,15 @@ export const store = new Vuex.Store({
       commit('setUser', {email: payload.email})
     },
     userSignOut ({commit}) {
-      firebase.auth().signOut()
-      commit('setUser', null)
-      router.push('/')
+      firebase.auth()
+      .signOut()
+        .finally(() => {
+          commit('setUser', null)
+          commit('setLoading', false)
+          commit('setProduct', null)
+          commit('setProducts', [])
+          router.push('/')
+        })
     },
     createProduct ({commit}, payload) {
       commit('setLoading', true)
@@ -100,6 +97,7 @@ export const store = new Vuex.Store({
     getProducts ({commit}, payload) {
       commit('setLoading', true)
       fireDB.ref('produtos')
+        .orderByChild('name')
         .on('value', (data, dataStr) => {
           const listaProdutos = []
           data
@@ -117,6 +115,7 @@ export const store = new Vuex.Store({
     getProduct ({commit}, payload) {
       commit('setLoading', true)
       fireDB.ref(`produtos/${payload.id}`)
+        .orderByChild('name')
         .on('value', (data) => {
           commit('setProduct', data.toJSON())
           commit('setError', null)
