@@ -37,8 +37,6 @@
         <span class="hidden-md-and-up">
           <v-toolbar-side-icon @click="sidebar = !sidebar"></v-toolbar-side-icon>
         </span>
-        <!-- <v-toolbar-title id="brand-name">
-        </v-toolbar-title> -->
         <span class="hidden-sm-and-down">
           <v-btn :to="{ name: 'Index' }" color="light-blue lighten-1"><v-icon color="black"></v-icon><b> {{ title }} </b></v-btn>
         </span>
