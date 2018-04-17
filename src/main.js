@@ -4,7 +4,6 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 
-
 import App from './App'
 import { store } from './store'
 import router from './router'
