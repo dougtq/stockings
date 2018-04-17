@@ -70,13 +70,15 @@ export const store = new Vuex.Store({
     },
     userSignOut ({commit}) {
       firebase.auth()
-      .signOut()
+        .signOut()
+        .then(() => {
+          router.push('/')
+        })
         .finally(() => {
           commit('setUser', null)
           commit('setLoading', false)
           commit('setProduct', null)
           commit('setProducts', [])
-          router.push('/')
         })
     },
     createProduct ({commit}, payload) {
@@ -91,7 +93,7 @@ export const store = new Vuex.Store({
         })
         .catch((err) => {
           commit('setError', err)
-          commit('setLoading', false)          
+          commit('setLoading', false)
         })
     },
     getProducts ({commit}, payload) {
@@ -109,7 +111,7 @@ export const store = new Vuex.Store({
           commit('setLoading', false)
         }, (err) => {
           commit('setError', err)
-          commit('setLoading', false)          
+          commit('setLoading', false)
         })
     },
     getProduct ({commit}, payload) {
@@ -142,10 +144,10 @@ export const store = new Vuex.Store({
         .catch((err) => {
           commit('setError', err)
         })
-        .finally((err) => {
+        .finally(() => {
           commit('setLoading', false)
         })
-    } 
+    }
   },
   getters: {
     isAuthenticated (state) {
