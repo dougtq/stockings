@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-const App = firebase.initializeApp({    
+const App = firebase.initializeApp({
   apiKey: 'AIzaSyCnQPpuJ9dY-f40SCulXsTZS-Ld2VkAA-c',
   authDomain: 'use-abuse.firebaseapp.com',
   databaseURL: 'https://use-abuse.firebaseio.com',
