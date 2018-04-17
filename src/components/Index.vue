@@ -23,7 +23,7 @@ export default {
         },
         {
           src: 'http://cdn.ofuxico.com.br/img/galeria/2014/09/230434.jpg'
-        },
+        }
       ]
     }
   }
