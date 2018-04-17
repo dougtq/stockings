@@ -50,7 +50,7 @@ export default {
       productId: this.$store.state.product.id || this.$route.params.id,
       name: this.$store.state.product.name,
       nameRules: [(r) => !!r || 'Nome é obrigatório',
-      (r) => r && r.length < 50 || 'Nome não pode ultrapassar 50 caracteres'],
+        (r) => (r && r.length < 50) || 'Nome não pode ultrapassar 50 caracteres'],
       price: this.$store.state.product.price,
       priceRules: [(r) => !!r || 'Preço é obrigatório'],
       quantity: this.$store.state.product.quantity,
