@@ -81,7 +81,6 @@ export default {
     pages () {
       const fixedRoutes = [{ name: 'Home', route: { name: 'Index' }, icon: 'home', color: '' }]
 
-
       if (this.isAuthenticated) {
         return [
           ...fixedRoutes,
@@ -91,7 +90,7 @@ export default {
             icon: 'shopping_basket',
             color: ''
           },
-          { name: 'Add Produto', route: { name: 'Adicionar'}, icon: 'add', color: '' }
+          { name: 'Add Produto', route: { name: 'Adicionar' }, icon: 'add', color: '' }
         ]
       } else {
         return [
