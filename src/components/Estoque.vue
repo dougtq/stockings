@@ -2,12 +2,12 @@
 <v-container fluid>
   <v-layout row wrap>
     <v-flex xs12>
-      <v-layout class="header-produto">  
+      <v-layout class="header-produto">
         <v-flex xs12 sm12 md4>
           <h3><strong>Nome</strong></h3>
         </v-flex>
         <v-flex xs12 sm12 md4>
-          <h3><strong>Preço</strong></h3>  
+          <h3><strong>Preço</strong></h3>
         </v-flex>
         <v-flex xs12 sm12 md4>
           <h3><strong>Quantidade</strong></h3>
@@ -48,7 +48,7 @@ export default {
   name: 'Estoque',
   data () {
     return {
-      alert: false,
+      alert: false
     }
   },
   methods: {
